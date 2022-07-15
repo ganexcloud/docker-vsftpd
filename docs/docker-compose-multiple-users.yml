@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  vsftpd-user1:
+    image: ganex/vsftpd:latest
+    restart: always
+    ports:
+      - 21000:21
+      - 21100-21101:21100-21101
+    environment:
+      - FTP_USER=user1
+      - FTP_PASS=user1
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21101
+    volumes:
+      - /mnt/vsftpd/user1/home/:/home/vsftpd/user1/
+      - /mnt/vsftpd/user1/logs/:/var/log/vsftpd/
+  vsftpd-user2:
+    image: ganex/vsftpd:latest
+    restart: always
+    ports:
+      - 21001:21
+      - 21102-21103:21102-21103
+    environment:
+      - FTP_USER=user2
+      - FTP_PASS=user2
+      - PASV_MIN_PORT=21102
+      - PASV_MAX_PORT=21103
+    volumes:
+      - /mnt/vsftpd/user2/home/:/home/vsftpd/user2/
+      - /mnt/vsftpd/user2/logs/:/var/log/vsftpd/
