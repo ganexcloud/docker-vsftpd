@@ -1,7 +1,7 @@
 # ganex/vsftpd
 
-[![Docker Stars](https://img.shields.io/docker/stars/ganex/openvpn.svg)](https://hub.docker.com/r/ganex/openvpn/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/ganex/openvpn.svg)](https://hub.docker.com/r/ganex/openvpn/)
+[![Docker Stars](https://img.shields.io/docker/stars/ganex/vsftpd.svg)](https://hub.docker.com/r/ganex/vsftpd/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ganex/vsftpd.svg)](https://hub.docker.com/r/ganex/vsftpd/)
 
 This Docker container implements a vsftpd server, with the following features:
 
