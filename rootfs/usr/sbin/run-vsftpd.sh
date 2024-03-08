@@ -10,6 +10,16 @@ if [ "$FTP_PASS" = "**Random**" ]; then
     export FTP_PASS=`cat /dev/urandom | tr -dc A-Z-a-z-0-9 | head -c${1:-16}`
 fi
 
+# If no env var for FTP_USER_UID has been specified, use '1000':
+if [ "$FTP_USER_UID" = "**String**" ]; then
+    export FTP_USER_UID='1000'
+fi
+
+# If no env var for FTP_GROUP_GID has been specified, use '1000':
+if [ "$FTP_GROUP_GID" = "**String**" ]; then
+    export FTP_GROUP_GID='1000'
+fi
+
 # Do not log to STDOUT by default:
 if [ "$LOG_STDOUT" = "**Boolean**" ]; then
     export LOG_STDOUT=''
@@ -18,8 +28,9 @@ else
 fi
 
 # Create home dir and update vsftpd user db:
-mkdir -p "/home/vsftpd/${FTP_USER}"
-chown -R ftp:ftp /home/vsftpd/
+usermod -u ${FTP_USER_UID} ftp
+groupmod -g ${FTP_GROUP_GID} ftp
+chown ftp:ftp /home/vsftpd/
 
 echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd/virtual_users.txt
 /usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db

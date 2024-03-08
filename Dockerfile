@@ -11,11 +11,10 @@ RUN yum install -y \
 	db4 \
 	iproute && yum clean all
 
-RUN usermod -u ${USER_ID} ftp
-RUN groupmod -g ${GROUP_ID} ftp
-
 ENV FTP_USER **String**
-ENV FTP_PASS **Random**
+ENV FTP_USER **String**
+ENV FTP_USER_UID **String**
+ENV FTP_GROUP_GID **String**
 ENV PASV_ADDRESS **IPv4**
 ENV PASV_ADDR_RESOLVE NO
 ENV PASV_ENABLE YES
